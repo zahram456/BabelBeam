@@ -1,53 +1,68 @@
 # BabelBeam
 
-Beam your words across languages.
+**BabelBeam** is a polished Streamlit translation application designed for fast, readable, and practical multilingual translation.
 
-BabelBeam is a Streamlit-based translation app with a modern galaxy-themed UI, multi-language support, and optional text-to-speech playback.
+> **Tagline:** Beam your words across languages.
 
-## Features
+## Overview
 
-- Translate text between supported languages
-- Auto-detect source language option
-- Urdu and Arabic support with right-to-left (RTL) output rendering
-- Optional backup translator when the primary engine fails
-- Optional audio playback of translated text (gTTS)
-- Clean, responsive Streamlit interface
+BabelBeam provides a focused translation workflow with strong usability for both left-to-right and right-to-left languages. It combines a primary Google-based translation path with optional fallback support and in-app text-to-speech playback.
+
+## Key Features
+
+- Professional Streamlit interface with a custom galaxy theme
+- Source language auto-detection support
+- Right-to-left (RTL) rendering for Urdu and Arabic
+- Translation quality improvements for long text (normalization + chunking)
+- Retry handling for transient translation failures
+- Optional fallback translation engine when primary translation fails
+- Optional text-to-speech playback using gTTS
 
 ## Supported Languages
 
-- Auto Detect (source only)
-- English (`en`)
-- Hindi (`hi`)
-- French (`fr`)
-- German (`de`)
-- Spanish (`es`)
-- Urdu (`ur`)
-- Arabic (`ar`)
+| Language | Code | Notes |
+|---|---|---|
+| Auto Detect | `auto` | Source only |
+| English | `en` | Source/Target |
+| Hindi | `hi` | Source/Target |
+| French | `fr` | Source/Target |
+| German | `de` | Source/Target |
+| Spanish | `es` | Source/Target |
+| Urdu | `ur` | Source/Target, RTL output |
+| Arabic | `ar` | Source/Target, RTL output |
 
 ## Tech Stack
 
-- Python
-- Streamlit
-- deep-translator
-- gTTS
+- Python 3.10+
+- [Streamlit](https://streamlit.io/)
+- [deep-translator](https://pypi.org/project/deep-translator/)
+- [gTTS](https://pypi.org/project/gTTS/)
 
-## Installation
+## Project Structure
 
-1. Clone the repository:
+```text
+BabelBeam/
++- app.py
++- README.md
+```
+
+## Quick Start
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/zahram456/BabelBeam.git
 cd BabelBeam
 ```
 
-2. Install dependencies:
+### 2. Install dependencies
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install streamlit deep-translator gTTS
 ```
 
-## Run the App
+### 3. Run the app
 
 ```bash
 python -m streamlit run app.py
@@ -55,17 +70,24 @@ python -m streamlit run app.py
 
 ## Usage
 
-1. Choose source and target languages.
-2. Enter text in the input box.
+1. Select source and target languages.
+2. Enter or paste text in the input panel.
 3. Click **Translate**.
-4. Optionally enable audio playback.
+4. (Optional) Enable backup translator if the primary service fails.
+5. (Optional) Enable audio playback for translated output.
+
+## Reliability Notes
+
+- For best quality, keep backup translation disabled unless needed.
+- For long paragraphs, BabelBeam automatically splits text into safer chunks to reduce API truncation issues.
+- If source language is known, selecting it manually often improves accuracy versus auto-detect.
 
 ## Troubleshooting
 
-- `ModuleNotFoundError`: install missing packages using pip.
-- If translation fails temporarily, enable **Use backup translator if needed**.
-- If audio fails for a language, translation still works and text output is shown.
+- **`ModuleNotFoundError`**: install missing packages with pip.
+- **Translation failure**: retry, then enable backup translator.
+- **Audio unavailable**: some language/voice combinations may be limited by gTTS; text translation remains available.
 
 ## License
 
-This project is open-source for educational and personal use.
+This project is available for educational and personal use.
